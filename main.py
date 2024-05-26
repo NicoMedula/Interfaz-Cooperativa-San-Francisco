@@ -5,7 +5,7 @@ from customtkinter import *
 from PIL import Image, ImageTk
 from tkinter import messagebox
 import ast
-
+from Funciones import *
 
 
 
@@ -15,19 +15,10 @@ def Validar():
         abrirventana2()
     else:
         messagebox.showerror("cuidado","Contraseña o mail incorrecto")
-
-
 #############----------------------------------------------------------------------------------------
-
 def abrirventana2():
     App.withdraw()
-    App2=tk.Toplevel()
-    App2.geometry("925x500+300+200")
-    App2.configure(background="gray14")
-    App2.title("Pagina 2 ")
-    
-
-
+    Abrirnueva()
 #############----------------------------------------------------------------------------------------
 
 
