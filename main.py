@@ -5,7 +5,7 @@ from customtkinter import *
 from PIL import Image, ImageTk
 from tkinter import messagebox
 import ast
-from Funciones import *
+from Pagina2 import *
 
 
 
@@ -66,7 +66,7 @@ BotonIS = CTkButton(master=App, text="Iniciar sesion", corner_radius=32,fg_color
                    hover_color="#FF4500",command=Validar)# Boton de "Inicio de sesion"
 BotonIS.place(relx=0.6,rely=0.7, anchor="center")#Posicion de boton "Inicio de sesion"
 
-CajaOpcion= CTkComboBox(master=App, values=["ARG","EU","EEUU"],fg_color="#FFA500",corner_radius=32,dropdown_fg_color="#FFA500")#Caja de opciones
+CajaOpcion= CTkComboBox(master=App, values=["AMERICA","EU","ASIA"],fg_color="#FFA500",corner_radius=32,dropdown_fg_color="#FFA500")#Caja de opciones
 CajaOpcion.place(relx=0.6,rely=0.5, anchor="center")#Posicion de la caja de opciones
 
 CajaCheck= CTkCheckBox(master=App,text="No soy robot",fg_color="#FFA500",checkbox_height=30,corner_radius=36,checkbox_width=30) #check de robot
