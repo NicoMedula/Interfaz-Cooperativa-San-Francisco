@@ -7,8 +7,6 @@ from tkinter import messagebox
 import ast
 from Pagina2 import *
 
-
-
 #############----------------------------------------------------------------------------------------
 def Validar():
     if usuario.get()=="admin" and contra.get()=="1234":
