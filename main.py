@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from tkinter import messagebox
 import ast
 from Pagina2 import *
+from ProcesosProd import *
 
 #############----------------------------------------------------------------------------------------
 def Validar():
@@ -18,6 +19,7 @@ def abrirventana2():
     App.withdraw()
     Abrirnueva()
 #############----------------------------------------------------------------------------------------
+
 
 
 App=CTk()

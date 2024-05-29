@@ -6,8 +6,17 @@ from PIL import Image, ImageTk
 from tkinter import messagebox
 import ast
 from tkintermapview import TkinterMapView
+from ProcesosProd import VentanaNuevaP
 
-def Abrirnueva ():
+App2=None
+App3=None
+
+def abrirPprod():
+    global App2
+    VentanaNuevaP()
+    
+def Abrirnueva():
+    global App2
     App2=tk.Toplevel()
     App2.geometry("925x500+300+200")
     App2.configure(background="gray14")
@@ -15,9 +24,6 @@ def Abrirnueva ():
 
     cuadroScroll(App2)
 
-    BotonCerrarSesion= CTkButton(master=App2,text="Cerrar Sesion",fg_color="#FFA500",
-                   hover_color="#FF4500")
-    BotonCerrarSesion.place(relx=0.110, rely=0.1, anchor="center")
 
     BotonMosMapaPR = CTkButton(master=App2, text="Mostrar ubicacin del puerto de Rosario", corner_radius=32,fg_color="#FFA500",
                    hover_color="#FF4500",command=abrirMapaPuerto)# Boton de la ubi del puerto
@@ -26,6 +32,8 @@ def Abrirnueva ():
     BotonMosMapaCoop = CTkButton(master=App2, text="Mostrar Ubicacin da la Cooperativa", corner_radius=32,fg_color="#FFA500",
                    hover_color="#FF4500",command=AbrirMapaCoop)# Boton de la ubi de la coop
     BotonMosMapaCoop.place(relx=0.17,rely=0.3, anchor="center")
+
+    
 
 def abrirMapaPuerto():
     Mapa=tk.Toplevel()
@@ -60,7 +68,7 @@ def cuadroScroll(App2):
     cuadro.pack(expand=True)
     cuadro.place(rely=0.075,relx=0.5)
     
-    CTkButton(master=cuadro, text="Texto 1",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)               
+    CTkButton(master=cuadro, text="Proc. Produc.",fg_color="#FFA500",hover_color="#FF4500",command=abrirPprod).pack(expand=True,padx=30,pady=20)               
     CTkButton(master=cuadro, text="Texto 2",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
     CTkButton(master=cuadro, text="Texto 3",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
     
