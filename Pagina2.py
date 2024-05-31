@@ -33,6 +33,49 @@ def Abrirnueva():
                    hover_color="#FF4500",command=AbrirMapaCoop)# Boton de la ubi de la coop
     BotonMosMapaCoop.place(relx=0.17,rely=0.3, anchor="center")
 
+   ##############################--------------------------------------------------------------
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/location-pin.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((40, 40), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.35, rely=0.3, anchor="center")
+   ##############################--------------------------------------------------------------
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/location-pin.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((40, 40), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.36, rely=0.4, anchor="center")
+    
+    ##############################--------------------------------------------------------------
+
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/project-management.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((40, 40), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.80, rely=0.15, anchor="center")
+
+    #############################################33-------------------------------------------------------
+
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/logo.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((250, 250), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.2, rely=0.73, anchor="center")
+
+    #############################################3----------------------------------------------------------
+
     
 
 def abrirMapaPuerto():
@@ -66,10 +109,11 @@ def AbrirMapaCoop():
 def cuadroScroll(App2):
     cuadro= CTkFrame(master=App2, fg_color="#8D6F3A", border_color="#FFCC70",border_width=2)
     cuadro.pack(expand=True)
-    cuadro.place(rely=0.075,relx=0.5)
+    cuadro.place(rely=0.2,relx=0.5)
     
     CTkButton(master=cuadro, text="Proc. Produc.",fg_color="#FFA500",hover_color="#FF4500",command=abrirPprod).pack(expand=True,padx=30,pady=20)               
     CTkButton(master=cuadro, text="Texto 2",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
     CTkButton(master=cuadro, text="Texto 3",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
     
-    
+    headtexto=Label(App2,text="Secciones",fg="orange2",bg="gray14",font=("Microsoft Yahei UI Light",23,"bold"))
+    headtexto.place(relx=0.55,rely=0.1)

@@ -8,6 +8,8 @@ import ast
 from Pagina2 import *
 from tkinter import ttk
 
+
+
 def tablaAceitesEsenciales():
     global ventanaAceites
     ventanaAceites=tk.Toplevel()

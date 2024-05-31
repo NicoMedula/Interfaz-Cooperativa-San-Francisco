@@ -45,6 +45,7 @@ img2 = img2.resize((40, 40), Image.LANCZOS)
 img2 = ImageTk.PhotoImage(img2)
 Labelimg2=Label(master=App, image=img2, border=0, bg="gray14")
 Labelimg2.place(relx=0.73, rely=0.4, anchor="center")
+
 #########-------------------------------------------------------------------------------------------------------
 
 img3 = Image.open("C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/user.png")
