@@ -7,9 +7,16 @@ from tkinter import messagebox
 import ast
 from tkintermapview import TkinterMapView
 from ProcesosProd import VentanaNuevaP
+from Exportacion import VentanaExport
 
 App2=None
 App3=None
+
+def abrirExport():
+    global App2
+    VentanaExport()
+
+
 
 def abrirPprod():
     global App2
@@ -61,7 +68,7 @@ def Abrirnueva():
 
     Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
     Labelimg3.image = photo_img3  
-    Labelimg3.place(relx=0.80, rely=0.15, anchor="center")
+    Labelimg3.place(relx=0.80, rely=0.25, anchor="center")
 
     #############################################33-------------------------------------------------------
 
@@ -112,7 +119,7 @@ def cuadroScroll(App2):
     cuadro.place(rely=0.2,relx=0.5)
     
     CTkButton(master=cuadro, text="Proc. Produc.",fg_color="#FFA500",hover_color="#FF4500",command=abrirPprod).pack(expand=True,padx=30,pady=20)               
-    CTkButton(master=cuadro, text="Texto 2",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
+    CTkButton(master=cuadro, text="Exportaciones",fg_color="#FFA500",hover_color="#FF4500",command=VentanaExport()).pack(expand=True,padx=30,pady=20)
     CTkButton(master=cuadro, text="Texto 3",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
     
     headtexto=Label(App2,text="Secciones",fg="orange2",bg="gray14",font=("Microsoft Yahei UI Light",23,"bold"))
