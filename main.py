@@ -38,9 +38,12 @@ def GuardarArchivo():
     Archivo.write(usuario2.get() + "\n")
     Archivo.write(contra2.get() + "\n")
     Archivo.close()
+    App5.destroy()
+    
 
 ###############################################----------------------------------------------------
 def registrarUser():
+    global App5
     App5=CTk()
     App5.geometry("300x300")#Tamaño de la ventana de Tkinter
     App5.configure(bg="#fff")
@@ -59,9 +62,6 @@ def registrarUser():
     BotonSumbit.place(relx=0.5,rely=0.5, anchor="center")
 
     App5.mainloop()
-
-
-    
 
 
 ###############################################----------------------------------------------------
@@ -130,17 +130,6 @@ contra.place(relx=0.6,rely=0.4, anchor="center")
 
 
 #############----------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
 
 
 App.mainloop()
