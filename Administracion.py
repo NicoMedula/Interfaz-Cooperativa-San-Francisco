@@ -33,16 +33,17 @@ def Recuadro():
     cuadro.pack(expand=True)
     cuadro.place(rely=0.2,relx=0.5)
     
-    CTkButton(master=cuadro, text="Ingreso de productos",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)               
-    CTkButton(master=cuadro, text="Stock general",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
+    CTkButton(master=cuadro, text="Ingreso de productos",fg_color="#FFA500",hover_color="#FF4500",command=ventanaProveedores).pack(expand=True,padx=30,pady=20)               
+    CTkButton(master=cuadro, text="Stock general",fg_color="#FFA500",hover_color="#FF4500",command=mostrarFrutaCantidad).pack(expand=True,padx=30,pady=20)
     CTkButton(master=cuadro, text="Camiones",fg_color="#FFA500",hover_color="#FF4500", command= ventanaCamiones).pack(expand=True,padx=30,pady=20)
     
 
     
     headtexto=Label(App6,text="Secciones",fg="orange2",bg="gray14",font=("Microsoft Yahei UI Light",23,"bold"))
     headtexto.place(relx=0.55,rely=0.1)
-  
 
+  #BASE DE DATOS PARA LOS CAMIONES
+###################################################################################################################
 def insertarCamiones(marca, carga):
     try:
         
@@ -131,8 +132,143 @@ def ventanaCamiones():
     scrollbar = CTkScrollbar(cuadroTexto, command=ResultadoTexto.yview)
     scrollbar.pack(side='right', fill='y')
 
+    ResultadoTexto.configure(yscrollcommand=scrollbar.set)
+    AppCa.mainloop()
+    ##################################################################################################################
+
+
+
+
+    #BASE DE DATOS PARA PRVEEDORES
+    ##################################################################################################################
+
+def insertarProveedor(nombre, fruta, cantidad, precio):
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="camiones")
+        cursor = conn.cursor()
+
+        query = "INSERT INTO proveedores (Proveedor, Fruta, Cantidad, Precio) VALUES (%s, %s, %s, %s)"
+        data = (nombre, fruta, cantidad, precio)
+        cursor.execute(query, data)
+
+        query2 = "SELECT * FROM proveedores"
+        cursor.execute(query2)
+        records = cursor.fetchall()
+
+        ResultadoTexto.delete(1.0, tk.END)
+        ResultadoTexto.insert(tk.END, "Proveedores registrados:\n")
+        for record in records:
+            ResultadoTexto.insert(tk.END, f"Proveedor: {record[1]}\n")
+            ResultadoTexto.insert(tk.END, f"Fruta: {record[2]}\n")
+            ResultadoTexto.insert(tk.END, f"Cantidad: {record[3]}\n")
+            ResultadoTexto.insert(tk.END, f"Precio: {record[4]}\n\n")
+
+        conn.commit()
+
+    except Exception as e:
+        ResultadoTexto.insert(tk.END, f"Error: {e}\n")
+
+    finally:
+        cursor.close()
+        conn.close()
+
+def CargarProvee():
+    nombre = entradaNombre.get()
+    fruta = entradaFruta.get()
+    cantidad= entradaCantidad.get()
+    precio= entradaPrecio.get()
+
+    insertarProveedor(nombre, fruta, cantidad, precio)
+
+def ventanaProveedores():
+
+    root = CTk()
+    root.title("Registro de Proveedores")
+    root.geometry("800x600")
+
+    global entradaCantidad
+    global entradaFruta
+    global entradaNombre
+    global entradaPrecio
+    global ResultadoTexto
+
+    labelNombre = CTkLabel(root, text="Nombre de proovedor")
+    labelNombre.pack(pady=5)
+    entradaNombre = CTkEntry(root)
+    entradaNombre.pack(pady=5)
+
+    labelFruta = CTkLabel(root, text="Ingrese la fruta")
+    labelFruta.pack(pady=5)
+    entradaFruta = CTkEntry(root)
+    entradaFruta.pack(pady=5)
+
+    labelCantidad= CTkLabel(root, text="Cantidad de frutas")
+    labelCantidad.pack(pady=5)
+    entradaCantidad = CTkEntry(root)
+    entradaCantidad.pack(pady=5)
+
+    labelPrecio= CTkLabel(root, text="Ingrese el precio")
+    labelPrecio.pack(pady=5)
+    entradaPrecio = CTkEntry(root)
+    entradaPrecio.pack(pady=5)
+
+    BotonRegistrar = CTkButton(root, text="Registrar Proveedor",corner_radius=32,fg_color="#FFA500",
+                             hover_color="#FF4500", command=CargarProvee)
+    BotonRegistrar.pack(pady=20)
+
+
+    CuadroTexto = CTkFrame(root)
+    CuadroTexto.pack(pady=20, fill='both', expand=True)
+
+
+    ResultadoTexto = CTkTextbox(CuadroTexto, wrap='word', height=10)
+    ResultadoTexto.pack(side='left', fill='both', expand=True, padx=(20, 0))
+
+
+    scrollbar = CTkScrollbar(CuadroTexto, command=ResultadoTexto.yview)
+    scrollbar.pack(side='right', fill='y')
+
 
     ResultadoTexto.configure(yscrollcommand=scrollbar.set)
 
 
-    AppCa.mainloop()
+    root.mainloop()
+    ##################################################################################################################
+
+#STOCK DE FRUTAS
+##################################################################################################################
+def mostrarFrutaCantidad():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="camiones")
+        cursor = conn.cursor()
+
+        query = "SELECT Proveedor, Fruta, Cantidad FROM proveedores"
+        cursor.execute(query)
+        records = cursor.fetchall()
+
+        ventana = tk.Tk()
+        ventana.title("Stock")
+
+        
+        ResultadoTexto = tk.Text(ventana, height=10, width=50)
+        ResultadoTexto.pack()
+
+        ResultadoTexto.insert(tk.END, "Proveedor\t\t\tFruta\t\tCantidad\n")
+        ResultadoTexto.insert(tk.END, "--------------------------------------------------\n")
+        for record in records:
+            ResultadoTexto.insert(tk.END, f"{record[0]}\t\t\t{record[1]}\t\t{record[2]}\n")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    finally:
+        cursor.close()
+        conn.close()
