@@ -43,7 +43,17 @@ def Abrirnueva():
                    hover_color="#FF4500",command=AbrirMapaCoop)# Boton de la ubi de la coop
     BotonMosMapaCoop.place(relx=0.17,rely=0.3, anchor="center")
 
-   ##############################--------------------------------------------------------------
+    #############################################----------------------------------------------------
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/manager.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((40, 40), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App2, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.80, rely=0.62, anchor="center")
+
+    ##############################--------------------------------------------------------------
     img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/location-pin.png"
     img3 = Image.open(img_path)
     img3 = img3.resize((40, 40), Image.LANCZOS)

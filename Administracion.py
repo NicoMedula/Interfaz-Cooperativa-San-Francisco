@@ -17,6 +17,15 @@ def ventanaAdministracion():
     App6.configure(background="gray14")
     App6.title("Administracion")
     Recuadro()
+
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/logo.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((250, 250), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App6, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.2, rely=0.73, anchor="center")
     
 
 def Recuadro():
@@ -60,7 +69,6 @@ def insertarCamiones(marca, carga):
         
         ResultadoTexto.insert(tk.END, "Camiones registrados:\n")
         for record in records:
-            ResultadoTexto.insert(tk.END, f"ID: {record[0]}\n")
             ResultadoTexto.insert(tk.END, f"Marca: {record[1]}\n")
             ResultadoTexto.insert(tk.END, f"Carga: {record[2]}\n\n")
 
@@ -75,7 +83,7 @@ def insertarCamiones(marca, carga):
         cursor.close()
         conn.close()
 
-def on_submit():
+def CargarCamion():
     marca = entradamarca.get()
     carga = entradacarga.get()
     insertarCamiones(marca, carga)
@@ -84,28 +92,31 @@ def on_submit():
 
 def ventanaCamiones():
     set_appearance_mode("System")  
-    set_default_color_theme("blue")  
+    
 
     AppCa = CTk()
     AppCa.title("Registro de Camiones")
     AppCa.geometry("800x600")
 
+
     global entradacarga
     global entradamarca
     global ResultadoTexto
 
-    labelMarca = CTkLabel(AppCa, text="Marca del Camión:")
+    labelMarca = CTkLabel(AppCa,text="Ingrese la marca del camion")
     labelMarca.pack(pady=5)
     entradamarca = CTkEntry(AppCa)
     entradamarca.pack(pady=5)
 
-    labelCarga = CTkLabel(AppCa, text="Carga que lleva:")
+    labelCarga = CTkLabel(AppCa,text="Ingrese la carga del camion")
     labelCarga.pack(pady=5)
     entradacarga = CTkEntry(AppCa)
     entradacarga.pack(pady=5)
 
 
-    BotonRegis = CTkButton(AppCa, text="Registrar Camión", command=on_submit)
+    BotonRegis = CTkButton(master=AppCa, text="Registrar", corner_radius=32,fg_color="#FFA500",
+                             hover_color="#FF4500", command=CargarCamion)
+    
     BotonRegis.pack(pady=20)
 
 

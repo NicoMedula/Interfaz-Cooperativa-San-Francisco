@@ -64,7 +64,7 @@ def cargarPedido():
 
     archivo.save("Data.xlsx")
     messagebox.showinfo(title="Cargado",message="Se cargo el pedido!")
-    App.destroy()
+    App7.destroy()
     
 
 #######################################################################---------------------------------------
@@ -92,30 +92,39 @@ def mostrarPedidos():
 
 ##############################################--------------------------------------
 def realizarpedido():
-    global App
-    App=tk.Toplevel()
-    App.geometry("400x400")
-    App.configure(background="gray14")
-    App.title("Exportaciones")
+    global App7
+    App7=tk.Toplevel()
+    App7.geometry("400x400")
+    App7.configure(background="gray14")
+    App7.title("Exportaciones")
+
+    img_path = "C:/Users/nicol/OneDrive/Escritorio/TPI Interfaz/Imagen/logo.png"
+    img3 = Image.open(img_path)
+    img3 = img3.resize((250, 250), Image.LANCZOS)
+    photo_img3 = ImageTk.PhotoImage(img3)
+
+    Labelimg3 = tk.Label(App7, image=photo_img3, border=0,bg="gray14")
+    Labelimg3.image = photo_img3  
+    Labelimg3.place(relx=0.2, rely=0.73, anchor="center")
 
     global nombreprod
     global categorias
     global cantprod
 
-    categorias=CTkComboBox(App,values=["Aceites","Frutas","Jugos"],fg_color="#FFA500",corner_radius=32,dropdown_fg_color="#FFA500")
+    categorias=CTkComboBox(App7,values=["Aceites","Frutas","Jugos"],fg_color="#FFA500",corner_radius=32,dropdown_fg_color="#FFA500")
     categorias.place(relx=0.6,rely=0.5, anchor="center")
 
-    nombreprod=CTkEntry(master=App, placeholder_text="Ingrese el producto", width=200,font=("bold",12)) 
+    nombreprod=CTkEntry(master=App7, placeholder_text="Ingrese el producto", width=200,font=("bold",12)) 
     nombreprod.place(relx=0.6,rely=0.3, anchor="center")
 
-    cantprod=CTkEntry(master=App, placeholder_text="Ingrese cantidad", width=200,font=("bold",12)) 
+    cantprod=CTkEntry(master=App7, placeholder_text="Ingrese cantidad", width=200,font=("bold",12)) 
     cantprod.place(relx=0.6,rely=0.4, anchor="center")
 
-    Botonrealizar=(CTkButton(master=App, text="Realizar pedido", corner_radius=32,fg_color="#FFA500",
+    Botonrealizar=(CTkButton(master=App7, text="Realizar pedido", corner_radius=32,fg_color="#FFA500",
                    hover_color="#FF4500",command=cargarPedido))
     Botonrealizar.place(relx=0.6,rely=0.65, anchor="center")
 
-    BotonLimpiar=CTkButton(master=App, text="Limpiar", corner_radius=32,fg_color="#FFA500",
+    BotonLimpiar=CTkButton(master=App7, text="Limpiar", corner_radius=32,fg_color="#FFA500",
                    hover_color="#FF4500",command=Limpiar)
     BotonLimpiar.place(relx=0.6,rely=0.75, anchor="center")
 
