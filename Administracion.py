@@ -51,16 +51,16 @@ def insertarCamiones(marca, carga):
             host="localhost",
             user="root",
             password="",
-            database="camiones")
+            database="tpi")
         cursor = conn.cursor()
 
         
-        query = "INSERT INTO camiones2 (Marca, Carga) VALUES (%s, %s)"
+        query = "INSERT INTO camiones (Marca, Carga) VALUES (%s, %s)"
         data = (marca, carga)
         cursor.execute(query, data)
 
         
-        query2 = "SELECT * FROM camiones2"
+        query2 = "SELECT * FROM camiones"
         cursor.execute(query2)
         records = cursor.fetchall()
 
@@ -148,7 +148,7 @@ def insertarProveedor(nombre, fruta, cantidad, precio):
             host="localhost",
             user="root",
             password="",
-            database="camiones")
+            database="tpi")
         cursor = conn.cursor()
 
         query = "INSERT INTO proveedores (Proveedor, Fruta, Cantidad, Precio) VALUES (%s, %s, %s, %s)"
@@ -247,7 +247,7 @@ def mostrarFrutaCantidad():
             host="localhost",
             user="root",
             password="",
-            database="camiones")
+            database="tpi")
         cursor = conn.cursor()
 
         query = "SELECT Proveedor, Fruta, Cantidad FROM proveedores"
