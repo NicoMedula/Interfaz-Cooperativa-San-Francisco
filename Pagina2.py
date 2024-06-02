@@ -8,15 +8,18 @@ import ast
 from tkintermapview import TkinterMapView
 from ProcesosProd import VentanaNuevaP
 from Exportacion import VentanaExport
+from Administracion import ventanaAdministracion
 
 App2=None
 App3=None
 
+def abrirAdmin():
+    global App2
+    ventanaAdministracion()
+
 def abrirExport():
     global App2
     VentanaExport()
-
-
 
 def abrirPprod():
     global App2
@@ -131,7 +134,7 @@ def cuadroScroll(App2):
     
     CTkButton(master=cuadro, text="Proc. Produc.",fg_color="#FFA500",hover_color="#FF4500",command=abrirPprod).pack(expand=True,padx=30,pady=20)               
     CTkButton(master=cuadro, text="Exportaciones",fg_color="#FFA500",hover_color="#FF4500",command=VentanaExport).pack(expand=True,padx=30,pady=20)
-    CTkButton(master=cuadro, text="Texto 3",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
+    CTkButton(master=cuadro, text="Administracion",fg_color="#FFA500",hover_color="#FF4500",command=abrirAdmin).pack(expand=True,padx=30,pady=20)
     
     headtexto=Label(App2,text="Secciones",fg="orange2",bg="gray14",font=("Microsoft Yahei UI Light",23,"bold"))
     headtexto.place(relx=0.55,rely=0.1)

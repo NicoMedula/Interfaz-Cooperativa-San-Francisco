@@ -8,6 +8,7 @@ import ast
 from tkinter import ttk
 from Pagina2 import *
 import openpyxl as xl
+import random
 
 ##############################################--------------------------------------
 
@@ -35,7 +36,7 @@ def cargarPedido():
     hoja1.cell(column=1,row=numerofila,value=valorProd)
     hoja1.cell(column=2,row=numerofila,value=valorCantidad)
     hoja1.cell(column=3,row=numerofila,value=valorCat)
-    hoja1.cell(column=5,row=numerofila,value=numerofila)
+    hoja1.cell(column=5,row=numerofila,value=numerofila-1)
     
     
 
@@ -73,11 +74,6 @@ def mostrarPedidos():
     App.geometry("925x500+300+200")
     App.configure(background="gray14")
     App.title("Mis Pedidos")
-
-    ################################------------------------------------------------
-    
-
-    ###############################################----------------------------------------
 
     Arbol = ttk.Treeview(App, columns=("Producto", "Cantidad", "Categoría","Precio","Nro pedido"), show='headings')
     Arbol.heading("Producto", text="Producto")
@@ -123,6 +119,33 @@ def realizarpedido():
                    hover_color="#FF4500",command=Limpiar)
     BotonLimpiar.place(relx=0.6,rely=0.75, anchor="center")
 
+###############################################################------------------------------------------------------
+
+def seguirmipedido():
+    ventanaseguimiento = tk.Toplevel()
+    ventanaseguimiento.geometry("925x500+300+200")
+    ventanaseguimiento.configure(background="gray14")
+    ventanaseguimiento.title("Seguir pedido")
+
+    Arbol = ttk.Treeview(ventanaseguimiento, columns=("Producto", "Cantidad", "Estado", "Nro pedido"), show='headings')
+    Arbol.heading("Producto", text="Producto")
+    Arbol.heading("Cantidad", text="Cantidad")
+    Arbol.heading("Estado", text="Estado")
+    Arbol.heading("Nro pedido", text="Nro de pedido")
+    Arbol.pack(expand=True, fill='both')
+
+    archivo = xl.load_workbook("Data.xlsx")
+    hoja1 = archivo["Hoja1"]
+
+    for row in hoja1.iter_rows(min_row=2, values_only=True):
+        producto, cantidad, categoria, _, numero_pedido = row 
+        estado = random.choice(["En proceso", "En camino", "En espera"])  
+        Arbol.insert("", tk.END, values=(producto, cantidad, estado, numero_pedido))
+
+    archivo.save("Data.xlsx")
+
+
+###############################################################------------------------------------------------------
 
 def cuadroScroll():
     cuadro= CTkFrame(master=App4, fg_color="#8D6F3A", border_color="#FFCC70",border_width=2)
@@ -131,7 +154,7 @@ def cuadroScroll():
     
     CTkButton(master=cuadro, text="Mis pedidos",fg_color="#FFA500",hover_color="#FF4500",command=mostrarPedidos).pack(expand=True,padx=30,pady=20)               
     CTkButton(master=cuadro, text="Realizar pedido",fg_color="#FFA500",hover_color="#FF4500",command=realizarpedido).pack(expand=True,padx=30,pady=20)
-    CTkButton(master=cuadro, text="Seguir mi pedido",fg_color="#FFA500",hover_color="#FF4500").pack(expand=True,padx=30,pady=20)
+    CTkButton(master=cuadro, text="Seguir mi pedido",fg_color="#FFA500",hover_color="#FF4500",command=seguirmipedido).pack(expand=True,padx=30,pady=20)
     
     headtexto=Label(App4,text="Secciones",fg="orange2",bg="gray14",font=("Microsoft Yahei UI Light",23,"bold"))
     headtexto.place(relx=0.55,rely=0.1)
