@@ -70,7 +70,7 @@ def insertarCamiones(marca, carga):
         
         ResultadoTexto.insert(tk.END, "Camiones registrados:\n")
         for record in records:
-            ResultadoTexto.insert(tk.END, f"Marca: {record[1]}\n")
+            ResultadoTexto.insert(tk.END, f"Patente: {record[1]}\n")
             ResultadoTexto.insert(tk.END, f"Carga: {record[2]}\n\n")
 
         conn.commit()
@@ -104,12 +104,12 @@ def ventanaCamiones():
     global entradamarca
     global ResultadoTexto
 
-    labelMarca = CTkLabel(AppCa,text="Ingrese la marca del camion")
+    labelMarca = CTkLabel(AppCa,text="Ingrese la patente del camion")
     labelMarca.pack(pady=5)
     entradamarca = CTkEntry(AppCa)
     entradamarca.pack(pady=5)
 
-    labelCarga = CTkLabel(AppCa,text="Ingrese la carga del camion")
+    labelCarga = CTkLabel(AppCa,text="Ingrese la carga (Cajones) del camion")
     labelCarga.pack(pady=5)
     entradacarga = CTkEntry(AppCa)
     entradacarga.pack(pady=5)
